@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Calculator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="calculator">
+
+        <!-- Top Bar -->
+        <div class="top-bar">
+
+            <span>CALCULATOR</span>
+
+            <div class="top-actions">
+
+                <button
+                    class="theme-btn"
+                    onclick="toggleTheme()"
+                >
+                    ☀️
+                </button>
+
+                <button
+                    class="sound-btn"
+                    onclick="toggleSound()"
+                >
+                    🔊
+                </button>
+
+                <button
+                    class="history-btn"
+                    onclick="toggleHistory()"
+                >
+                    ⌚
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- Display -->
+        <div class="display">
+
+            <div id="history"></div>
+
+            <input
+                type="text"
+                id="display"
+                value="0"
+                readonly
+            >
+
+        </div>
+
+
+        <!-- History Panel -->
+        <div id="historyPanel" class="history-panel">
+
+            <div class="history-header">
+
+                <h3>Calculation History</h3>
+
+                <button onclick="clearHistory()">
+                    Clear
+                </button>
+
+            </div>
+
+            <div id="historyList">
+
+                <p class="empty-history">
+                    No calculations yet
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- Scientific Mode -->
+        <button
+            class="mode-btn"
+            onclick="toggleScientific()"
+        >
+            SCI
+        </button>
+
+
+        <!-- Scientific Buttons -->
+        <div class="scientific-buttons">
+
+            <button onclick="scientific('sqrt')">√</button>
+
+            <button onclick="scientific('square')">x²</button>
+
+            <button onclick="scientific('power')">xʸ</button>
+
+            <button onclick="scientific('pi')">π</button>
+
+            <button onclick="scientific('sin')">sin</button>
+
+            <button onclick="scientific('cos')">cos</button>
+
+            <button onclick="scientific('tan')">tan</button>
+
+            <button onclick="scientific('log')">log</button>
+
+        </div>
+
+
+        <!-- Normal Calculator Buttons -->
+        <div class="buttons">
+
+            <button
+                class="special"
+                onclick="clearDisplay()"
+            >
+                AC
+            </button>
+
+            <button
+                class="special"
+                onclick="deleteLast()"
+            >
+                ⌫
+            </button>
+
+            <button
+                class="special"
+                onclick="percentage()"
+            >
+                %
+            </button>
+
+            <button
+                class="operator"
+                onclick="addValue('/')"
+            >
+                ÷
+            </button>
+
+
+            <button onclick="addValue('7')">7</button>
+            <button onclick="addValue('8')">8</button>
+            <button onclick="addValue('9')">9</button>
+
+            <button
+                class="operator"
+                onclick="addValue('*')"
+            >
+                ×
+            </button>
+
+
+            <button onclick="addValue('4')">4</button>
+            <button onclick="addValue('5')">5</button>
+            <button onclick="addValue('6')">6</button>
+
+            <button
+                class="operator"
+                onclick="addValue('-')"
+            >
+                −
+            </button>
+
+
+            <button onclick="addValue('1')">1</button>
+            <button onclick="addValue('2')">2</button>
+            <button onclick="addValue('3')">3</button>
+
+            <button
+                class="operator"
+                onclick="addValue('+')"
+            >
+                +
+            </button>
+
+
+            <button
+                class="zero"
+                onclick="addValue('0')"
+            >
+                0
+            </button>
+
+            <button onclick="addValue('.')">
+                .
+            </button>
+
+            <button
+                class="equal"
+                onclick="calculate()"
+            >
+                =
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

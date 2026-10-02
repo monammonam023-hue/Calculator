@@ -1,0 +1,1042 @@
+:root {
+    --bg: #080b12;
+    --panel: rgba(20, 25, 37, 0.95);
+    --display: #0b1019;
+    --text: #ffffff;
+    --muted: #7f899d;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-family: "Segoe UI", Arial, sans-serif;
+
+    background:
+        radial-gradient(circle at 20% 20%, rgba(255, 140, 0, 0.12), transparent 30%),
+        radial-gradient(circle at 80% 80%, rgba(0, 210, 164, 0.10), transparent 30%),
+        #080b12;
+}
+
+.calculator {
+    width: min(390px, calc(100% - 20px));
+
+    padding: 18px;
+
+    border-radius: 30px;
+
+    background: var(--panel);
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    box-shadow:
+        0 30px 80px rgba(0, 0, 0, 0.65);
+}
+
+/* Top */
+
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 14px;
+}
+
+.top-bar span {
+    color: #8f99ad;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    letter-spacing: 2px;
+}
+
+.history-btn {
+    width: 38px;
+    height: 38px;
+
+    border-radius: 12px;
+
+    border: none;
+
+    background: #202838;
+
+    color: white;
+
+    font-size: 18px;
+}
+
+/* Display */
+
+.display {
+    min-height: 145px;
+
+    padding: 20px;
+
+    margin-bottom: 15px;
+
+    border-radius: 22px;
+
+    background: var(--display);
+
+    border: 1px solid rgba(255, 255, 255, 0.06);
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: flex-end;
+
+    overflow: hidden;
+}
+
+#history {
+    min-height: 25px;
+
+    color: var(--muted);
+
+    text-align: right;
+
+    font-size: 14px;
+
+    margin-bottom: 8px;
+}
+
+/* IMPORTANT: Long numbers */
+
+#display {
+    width: 100%;
+
+    border: none;
+    outline: none;
+
+    background: transparent;
+
+    color: var(--text);
+
+    text-align: right;
+
+    font-size: 32px;
+
+    font-weight: 600;
+
+    letter-spacing: 0;
+
+    white-space: nowrap;
+
+    overflow-x: auto;
+
+    overflow-y: hidden;
+
+    scrollbar-width: none;
+}
+
+#display::-webkit-scrollbar {
+    display: none;
+}
+
+/* SCI button */
+
+.mode-btn {
+    width: 100%;
+
+    height: 42px;
+
+    margin-bottom: 12px;
+
+    border-radius: 13px;
+
+    border: none;
+
+    background: #252e40;
+
+    color: #9fffe9;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    letter-spacing: 1px;
+}
+
+.mode-btn.active {
+    background: linear-gradient(
+        145deg,
+        #19d3a2,
+        #00a982
+    );
+
+    color: white;
+}
+
+/* Scientific buttons */
+
+.scientific-buttons {
+    display: none;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 9px;
+
+    margin-bottom: 12px;
+}
+
+.scientific-buttons.show {
+    display: grid;
+}
+
+.scientific-buttons button {
+    height: 48px;
+
+    border-radius: 14px;
+
+    font-size: 15px;
+}
+
+/* Normal buttons */
+
+.buttons {
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 11px;
+}
+
+button {
+    height: 66px;
+
+    border: none;
+
+    border-radius: 19px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #252d3e,
+            #1b2230
+        );
+
+    color: white;
+
+    font-size: 21px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.15s ease;
+
+    box-shadow:
+        0 7px 14px rgba(0, 0, 0, 0.25);
+}
+
+button:hover {
+    transform: translateY(-2px);
+}
+
+button:active {
+    transform: scale(0.94);
+}
+
+.special {
+    background:
+        linear-gradient(
+            145deg,
+            #343d50,
+            #293142
+        );
+}
+
+.operator {
+    background:
+        linear-gradient(
+            145deg,
+            #ffad42,
+            #ff6b2c
+        );
+}
+
+.equal {
+    background:
+        linear-gradient(
+            145deg,
+            #19d3a2,
+            #00a982
+        );
+}
+
+.zero {
+    grid-column: span 2;
+}
+
+/* History */
+
+.history-panel {
+    display: none;
+
+    margin-bottom: 15px;
+
+    padding: 15px;
+
+    border-radius: 18px;
+
+    background: #111722;
+
+    border: 1px solid rgba(255,255,255,0.07);
+
+    max-height: 220px;
+
+    overflow-y: auto;
+}
+
+.history-panel.show {
+    display: block;
+}
+
+.history-header {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 10px;
+}
+
+.history-header h3 {
+    color: white;
+
+    font-size: 15px;
+}
+
+.history-header button {
+    height: 32px;
+
+    padding: 0 12px;
+
+    border-radius: 9px;
+
+    font-size: 12px;
+}
+
+.history-item {
+    padding: 9px 4px;
+
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+
+    text-align: right;
+}
+
+.history-question {
+    color: #7f899d;
+
+    font-size: 13px;
+}
+
+.history-answer {
+    color: white;
+
+    font-size: 18px;
+
+    font-weight: 600;
+
+    margin-top: 3px;
+}
+
+.empty-history {
+    color: #687286;
+
+    text-align: center;
+
+    font-size: 13px;
+
+    padding: 12px;
+}
+
+/* Mobile */
+
+@media (max-width: 420px) {
+
+    .calculator {
+        width: calc(100% - 16px);
+
+        padding: 14px;
+    }
+
+    button {
+        height: 58px;
+
+        font-size: 19px;
+    }
+
+    #display {
+        font-size: 27px;
+    }
+}
+/* Top action buttons */
+
+.top-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.theme-btn,
+.history-btn {
+    width: 38px;
+    height: 38px;
+
+    border-radius: 12px;
+
+    border: none;
+
+    background: #202838;
+
+    color: white;
+
+    font-size: 17px;
+
+    cursor: pointer;
+}
+
+
+/* LIGHT THEME */
+
+body.light {
+    --bg: #eef2f7;
+    --panel: rgba(255, 255, 255, 0.96);
+    --display: #f5f7fa;
+    --text: #111827;
+    --muted: #6b7280;
+
+    background:
+        radial-gradient(
+            circle at 20% 20%,
+            rgba(255, 140, 0, 0.10),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 80% 80%,
+            rgba(0, 170, 140, 0.08),
+            transparent 30%
+        ),
+        #eef2f7;
+}
+
+
+/* Light calculator */
+
+body.light .calculator {
+    border-color: rgba(0, 0, 0, 0.08);
+
+    box-shadow:
+        0 25px 60px rgba(0, 0, 0, 0.15);
+}
+
+
+body.light .top-bar span {
+    color: #667085;
+}
+
+
+body.light .theme-btn,
+body.light .history-btn {
+    background: #e4e9f0;
+    color: #202838;
+}
+
+
+body.light .display {
+    border-color: rgba(0, 0, 0, 0.06);
+}
+
+
+body.light button {
+    background:
+        linear-gradient(
+            145deg,
+            #ffffff,
+            #e4e8ee
+        );
+
+    color: #18202d;
+
+    box-shadow:
+        0 6px 12px rgba(0, 0, 0, 0.10);
+}
+
+
+body.light .special {
+    background:
+        linear-gradient(
+            145deg,
+            #e5e9ef,
+            #d6dce5
+        );
+}
+
+
+body.light .mode-btn {
+    background: #e2e8f0;
+    color: #087f68;
+}
+
+
+body.light .history-panel {
+    background: #f7f9fc;
+
+    border-color: rgba(0, 0, 0, 0.07);
+}
+
+
+body.light .history-header h3,
+body.light .history-answer {
+    color: #111827;
+}
+
+
+body.light .history-question {
+    color: #667085;
+}
+
+
+body.light .empty-history {
+    color: #7b8494;
+}
+/* =========================
+   SMOOTH PREMIUM ANIMATIONS
+   ========================= */
+
+.calculator {
+    animation: calculatorIn 0.5s ease;
+}
+
+@keyframes calculatorIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.97);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+
+/* Button press animation */
+
+button {
+    transition:
+        transform 0.12s ease,
+        box-shadow 0.12s ease,
+        background 0.2s ease;
+}
+
+button:active {
+    transform: scale(0.92);
+}
+
+
+/* Display animation */
+
+#display {
+    transition:
+        color 0.2s ease,
+        font-size 0.2s ease;
+}
+
+
+/* SCI panel animation */
+
+.scientific-buttons {
+    transform-origin: top;
+}
+
+.scientific-buttons.show {
+    animation: sciOpen 0.2s ease;
+}
+
+@keyframes sciOpen {
+    from {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* History animation */
+
+.history-panel.show {
+    animation: historyOpen 0.2s ease;
+}
+
+@keyframes historyOpen {
+    from {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* Better hover */
+
+@media (hover: hover) and (pointer: fine) {
+
+    button:hover {
+        transform: translateY(-2px);
+    }
+
+    .theme-btn:hover,
+    .history-btn:hover {
+        transform: scale(1.05);
+    }
+
+}
+.sound-btn {
+    width: 38px;
+    height: 38px;
+
+    border-radius: 12px;
+    border: none;
+
+    background: #202838;
+    color: white;
+
+    font-size: 17px;
+
+    padding: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* Light mode */
+
+body.light .sound-btn {
+    background: #e4e9f0;
+    color: #202838;
+}
+/* =========================================
+   ULTIMATE PREMIUM CALCULATOR UI
+========================================= */
+
+.calculator {
+    position: relative;
+    overflow: hidden;
+
+    backdrop-filter: blur(22px);
+    -webkit-backdrop-filter: blur(22px);
+
+    box-shadow:
+        0 30px 80px rgba(0, 0, 0, 0.65),
+        inset 0 1px 0 rgba(255, 255, 255, 0.06);
+
+    animation:
+        premiumEntrance
+        0.65s
+        cubic-bezier(.2,.8,.2,1);
+}
+
+
+/* =========================================
+   PREMIUM BACKGROUND LIGHT
+========================================= */
+
+.calculator::before {
+    content: "";
+    position: absolute;
+
+    width: 220px;
+    height: 220px;
+
+    top: -120px;
+    right: -100px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255, 170, 70, 0.13),
+            transparent 70%
+        );
+
+    pointer-events: none;
+}
+
+
+/* =========================================
+   DISPLAY PREMIUM LOOK
+========================================= */
+
+.display {
+    position: relative;
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.025),
+        inset 0 -10px 30px rgba(0,0,0,0.08);
+
+    transition:
+        box-shadow 0.25s ease,
+        transform 0.2s ease;
+}
+
+.display:focus-within {
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.04),
+        0 0 25px rgba(25,211,162,0.07);
+}
+
+
+/* =========================================
+   DISPLAY TEXT
+========================================= */
+
+#display {
+    transition:
+        transform 0.18s ease,
+        color 0.2s ease,
+        font-size 0.2s ease;
+}
+
+#display:focus {
+    transform: scale(1.01);
+}
+
+
+/* =========================================
+   ALL BUTTONS
+========================================= */
+
+button {
+    position: relative;
+    overflow: hidden;
+
+    will-change: transform;
+
+    transition:
+        transform 0.12s cubic-bezier(.2,.8,.2,1),
+        box-shadow 0.18s ease,
+        filter 0.18s ease,
+        background 0.2s ease;
+}
+
+
+/* Light sweep */
+
+button::after {
+    content: "";
+
+    position: absolute;
+
+    width: 80px;
+    height: 140%;
+
+    left: -110px;
+    top: -20%;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,0.10),
+            transparent
+        );
+
+    transform: rotate(18deg);
+
+    transition:
+        left 0.45s ease;
+
+    pointer-events: none;
+}
+
+button:hover::after {
+    left: 130%;
+}
+
+
+/* Hover */
+
+@media (hover: hover) {
+
+    button:hover {
+        transform: translateY(-3px);
+        filter: brightness(1.08);
+
+        box-shadow:
+            0 10px 22px rgba(0,0,0,0.30);
+    }
+
+}
+
+
+/* Press */
+
+button:active {
+    transform:
+        translateY(1px)
+        scale(0.91);
+
+    filter: brightness(0.94);
+
+    box-shadow:
+        0 3px 7px rgba(0,0,0,0.25);
+}
+
+
+/* =========================================
+   OPERATOR GLOW
+========================================= */
+
+.operator:hover {
+    box-shadow:
+        0 0 20px rgba(255,140,50,0.22),
+        0 10px 22px rgba(0,0,0,0.25);
+}
+
+
+/* =========================================
+   EQUAL BUTTON
+========================================= */
+
+.equal {
+    box-shadow:
+        0 8px 20px rgba(0,169,130,0.16);
+}
+
+.equal:hover {
+    filter: brightness(1.12);
+
+    box-shadow:
+        0 0 25px rgba(25,211,162,0.25),
+        0 10px 24px rgba(0,0,0,0.25);
+}
+
+
+/* =========================================
+   SCIENTIFIC MODE
+========================================= */
+
+.scientific-buttons.show {
+    animation:
+        premiumPanelOpen
+        0.28s
+        cubic-bezier(.2,.8,.2,1);
+}
+
+@keyframes premiumPanelOpen {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(-12px)
+            scaleY(0.90);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scaleY(1);
+    }
+}
+
+
+/* =========================================
+   HISTORY
+========================================= */
+
+.history-panel.show {
+    animation:
+        premiumPanelOpen
+        0.28s
+        cubic-bezier(.2,.8,.2,1);
+}
+
+.history-item {
+    transition:
+        background 0.18s ease,
+        transform 0.18s ease;
+}
+
+.history-item:hover {
+    background:
+        rgba(255,255,255,0.025);
+
+    transform:
+        translateX(-3px);
+}
+
+
+/* =========================================
+   TOP BUTTONS
+========================================= */
+
+.theme-btn,
+.sound-btn,
+.history-btn {
+    transition:
+        transform 0.18s ease,
+        filter 0.18s ease,
+        box-shadow 0.18s ease;
+}
+
+@media (hover: hover) {
+
+    .theme-btn:hover,
+    .sound-btn:hover,
+    .history-btn:hover {
+
+        transform:
+            translateY(-2px)
+            scale(1.07);
+
+        filter: brightness(1.1);
+
+        box-shadow:
+            0 7px 18px rgba(0,0,0,0.25);
+    }
+
+}
+
+
+/* =========================================
+   SCI BUTTON
+========================================= */
+
+.mode-btn {
+    transition:
+        transform 0.18s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+.mode-btn.active {
+    box-shadow:
+        0 0 25px rgba(25,211,162,0.20);
+}
+
+
+/* =========================================
+   PREMIUM ENTRANCE
+========================================= */
+
+@keyframes premiumEntrance {
+
+    0% {
+        opacity: 0;
+
+        transform:
+            translateY(25px)
+            scale(0.94);
+
+        filter: blur(7px);
+    }
+
+    60% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+
+        filter: blur(0);
+    }
+}
+
+
+/* =========================================
+   LIGHT THEME PREMIUM TOUCH
+========================================= */
+
+body.light .calculator {
+
+    box-shadow:
+        0 30px 70px rgba(0,0,0,0.14),
+        inset 0 1px 0 rgba(255,255,255,0.8);
+}
+
+body.light button:hover {
+
+    box-shadow:
+        0 9px 20px rgba(0,0,0,0.13);
+}
+
+body.light .equal:hover {
+
+    box-shadow:
+        0 0 22px rgba(0,169,130,0.15),
+        0 9px 20px rgba(0,0,0,0.12);
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 420px) {
+
+    .calculator {
+        border-radius: 26px;
+    }
+
+    .display {
+        border-radius: 19px;
+    }
+
+    button {
+        border-radius: 17px;
+    }
+}
+
+
+/* =========================================
+   REDUCED MOTION
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+
+        animation-duration:
+            0.01ms !important;
+
+        animation-iteration-count:
+            1 !important;
+
+        transition-duration:
+            0.01ms !important;
+    }
+}
